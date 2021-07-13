@@ -1,5 +1,6 @@
 package br.com.alura.gerenciador.servlet;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +13,14 @@ import java.io.PrintWriter;
 public class NovaEmpresaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out =  resp.getWriter();
-        out.println("<html>");
-        out.println("<body>");
-        out.println("<h1> Empresa cadastrada: "+req.getParameter("nome")+"</h1> ");
-        out.println("</body>");
-        out.println("</html>");
-
         Empresa empresa = new Empresa(req.getParameter("nome"));
         Banco banco = new Banco();
         banco.adiciona(empresa);
+
+        //enviando informação para o JSP de empresa Cadastrada
+         RequestDispatcher rd = req.getRequestDispatcher("/empresaCadastrada.jsp");
+         req.setAttribute("nome", empresa.getNome());
+         rd.forward(req,resp);
     }
 
 
