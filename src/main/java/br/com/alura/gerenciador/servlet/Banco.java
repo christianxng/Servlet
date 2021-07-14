@@ -9,16 +9,13 @@ public class Banco {
     private static List<Empresa> empresas =  new ArrayList<>();
 
     static{
-        Empresa empresa = new Empresa("Alura", new Date());
-        Empresa empresa1 = new Empresa("Caelum", new Date());
-        empresas.add(empresa);
-        empresas.add(empresa1);
+        empresas.add(new Empresa("Alura", new Date()));
+        empresas.add(new Empresa("Caelum", new Date()));
     }
 
     public void adiciona(Empresa empresa) {
         empresas.add(empresa);
     }
-
     public List<Empresa> getEmpresas(){
         return empresas;
     }
